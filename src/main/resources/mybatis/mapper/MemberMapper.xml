@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="clone_project.demo.domain.member.mapper.MemberMapper">
+
+    <!--  Member insert쿼리-->
+    <insert id="save" parameterType="clone_project.demo.domain.member.dto.MemberDto">
+
+        INSERT INTO member (name, accountId, password)
+        VALUES (#{name}, #{accountId}, #{password})
+    </insert>
+
+    <!--  Member find 쿼리-->
+    <select id="findByAccountId" parameterType="String"
+            resultType="clone_project.demo.domain.member.entity.Member">
+        SELECT * FROM member
+        WHERE accountId = #{accountId}
+    </select>
+
+</mapper>
