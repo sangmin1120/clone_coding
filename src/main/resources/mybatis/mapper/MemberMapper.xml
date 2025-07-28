@@ -7,15 +7,15 @@
     <!--  Member insert쿼리-->
     <insert id="save" parameterType="clone_project.demo.domain.member.dto.MemberDto">
 
-        INSERT INTO member (name, account_id, password)
+        INSERT INTO member (name, accountId, password)
         VALUES (#{name}, #{accountId}, #{password})
     </insert>
 
     <!--  Member find 쿼리-->
     <select id="findByAccountId" parameterType="String"
-            resultType="clone_project.demo.domain.member.dto.MemberDto">
+            resultType="clone_project.demo.domain.member.entity.Member">
         SELECT * FROM member
-        WHERE member_accountId = #{accountId}
+        WHERE accountId = #{accountId}
     </select>
 
 </mapper>

@@ -1,9 +1,12 @@
 package clone_project.demo.domain.member.controller;
 
 import clone_project.demo.domain.member.dto.MemberDto;
+import clone_project.demo.domain.member.entity.Member;
 import clone_project.demo.domain.member.mapper.MemberMapper;
 import clone_project.demo.domain.member.service.memberService;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -20,15 +23,32 @@ public class memberController {
 
     private final memberService memberService;
 
+    @PostMapping("/login")
+    public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
+        log.info("[memberController] login()");
+
+        Member member = memberService.login(request);
+        if (member != null) {
+            // 로그인 성공, 쿠키 등록
+            Cookie cookie = new Cookie("accountId", member.getAccountId());
+            cookie.setDomain("localhost");
+            cookie.setPath("/");
+            cookie.setMaxAge(60 * 60 * 24 * 7); // 1주일 간 저장
+            cookie.setSecure(true);
+            response.addCookie(cookie);
+            //model 등록
+            model.addAttribute("member", member);
+            return "redirect:/";
+        }
+
+        return "auth/login";
+    }
+
     @PostMapping("/signup")
-    public String login(HttpServletRequest request, Model model) {
+    public String signup(HttpServletRequest request, Model model) {
         log.info("[memberController] signup()");
 
-        MemberDto memberDto = memberService.signup(request);
-
-        // 데이터 등록
-        model.addAttribute("member",memberDto);
-        // 로그인 페이지 호출
-        return "test";
+        memberService.signup(request);
+        return "redirect:/login";
     }
 }

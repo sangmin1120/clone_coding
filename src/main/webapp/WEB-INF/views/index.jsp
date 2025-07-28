@@ -11,15 +11,16 @@
     <title>Document</title>
 </head>
 <body>
-    index.jsp 파일
-    <form action="login" method="post">
-        <label for="accountId">
-            <input type="text" name="accountId" placeholder="아이디 입력해주세요">
-        </label>
-        <label for="password">
-            <input type="text" name="password" placeholder="비밀번호 입력해주세요">
-        </label>
-        <button type="submit">제출</button>
-    </form>
+    index.jsp 파일 - My Info
+    <table class="table table-hover table table-striped">
+        <tr>
+            <th>이름</th>
+            <th>아이디</th>
+        </tr>
+        <tr>
+            <th>${member.getName()}</th>
+            <th>${member.getAccountId()}</th>
+        </tr>
+    </table>
 </body>
 </html>
