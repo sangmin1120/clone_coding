@@ -8,12 +8,12 @@
     <title>회원가입 페이지</title>
 </head>
 <body>
-    <form action="signup" method="post">
-        <label for="accountId">이름</label>
+    <form id="signupBtn">
+        <label for="name">이름</label>
         <input type="text" id="name" name="name" placeholder="이름을 입력하세요">
 
-        <label for="accountId">아이디</label>
-        <input type="text" id="accountId" name="accountId" placeholder="아이디를 입력하세요">
+        <label for="email">아이디</label>
+        <input type="text" id="email" name="accountId" placeholder="아이디를 입력하세요">
 
         <label for="password">비밀번호</label>
         <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
@@ -22,3 +22,15 @@
     </form>
 </body>
 </html>
+
+<script src="/js/auth/auth.js">
+    document.getElementById("signupBtn").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        signup(name,email,password);
+    })
+</script>

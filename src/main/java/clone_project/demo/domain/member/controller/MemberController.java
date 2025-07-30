@@ -1,9 +1,7 @@
 package clone_project.demo.domain.member.controller;
 
-import clone_project.demo.domain.member.dto.MemberDto;
 import clone_project.demo.domain.member.entity.Member;
-import clone_project.demo.domain.member.mapper.MemberMapper;
-import clone_project.demo.domain.member.service.memberService;
+import clone_project.demo.domain.member.service.MemberService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,12 +14,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 /**
  * 회원 정보, 백엔드 처리가 필요하는 컨트롤러
  */
-@Controller
 @Slf4j
 @RequiredArgsConstructor
-public class memberController {
+public class MemberController {
 
-    private final memberService memberService;
+    private final MemberService memberService;
 
     @PostMapping("/login")
     public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
@@ -30,7 +27,7 @@ public class memberController {
         Member member = memberService.login(request);
         if (member != null) {
             // 로그인 성공, 쿠키 등록
-            Cookie cookie = new Cookie("accountId", member.getAccountId());
+            Cookie cookie = new Cookie("accountId", member.getEmail());
             cookie.setDomain("localhost");
             cookie.setPath("/");
             cookie.setMaxAge(60 * 60 * 24 * 7); // 1주일 간 저장
