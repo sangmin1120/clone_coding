@@ -9,8 +9,8 @@
 </head>
 <body>
     <form id="loginForm">
-        <label for="accountId">아이디</label>
-        <input type="text" id="accountId" name="accountId" placeholder="아이디를 입력하세요">
+        <label for="email">아이디</label>
+        <input type="text" id="email" name="email" placeholder="아이디를 입력하세요">
 
         <label for="password">비밀번호</label>
         <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
@@ -27,10 +27,10 @@
     document.getElementById("loginForm").addEventListener("submit", function (e) {
         e.preventDefault(); // 기본 form 제출 막기
 
-        const accountId = document.getElementById("accountId").value;
+        const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
 
-        login(accountId, password);
+        login(email, password);
     });
     // 회원가입 페이지 이동
     document.getElementById("signupBtn").addEventListener("click", function () {

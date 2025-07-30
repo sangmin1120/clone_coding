@@ -30,7 +30,7 @@ public class MemberService {
         MemberDto.Signup signupDto = new MemberDto.Signup(name, accountId, password, MemberRole.MEMBER); // Member의 역할로 저장
 
         // 회원 데이터 검증
-        if (memberMapper.findByAccountId(accountId) != null) {
+        if (memberMapper.findByEmail(accountId) != null) {
             throw new CustomException(ErrorCode.MEMBER_ALREADY_VALID);
         }
 
@@ -41,7 +41,7 @@ public class MemberService {
         log.info("[memberService] signup()");
 
         // 로직
-        if (memberMapper.findByAccountId(signupDto.getAccountId()) != null) {
+        if (memberMapper.findByEmail(signupDto.getEmail()) != null) {
             throw new CustomException(ErrorCode.MEMBER_ALREADY_VALID);
         }
 
@@ -56,7 +56,7 @@ public class MemberService {
         String name = request.getParameter("name");
         String accountId = request.getParameter("accountId");
         String password = request.getParameter("password");
-        Member member = memberMapper.findByAccountId(accountId);
+        Member member = memberMapper.findByEmail(accountId);
         if (member == null) {
             // 회원 정보가 없음
             return null;
@@ -70,7 +70,7 @@ public class MemberService {
     public void login(MemberDto.Login loginDto) {
         log.info("[memberService] login()");
 
-        Member member = memberMapper.findByAccountId(loginDto.getAccountId());
+        Member member = memberMapper.findByEmail(loginDto.getAccountId());
         if (member == null) {
             throw new CustomException(ErrorCode.MEMBER_NOT_FOUNT);
         }

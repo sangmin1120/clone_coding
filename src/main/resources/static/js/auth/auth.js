@@ -1,12 +1,12 @@
 // 로그인
-function login(accountId, password) {
+function login(email, password) {
     return fetch("/api/member/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            accountId: accountId,
+            email: email,
             password: password
         })
     })
@@ -29,7 +29,7 @@ function login(accountId, password) {
 }
 
 // 회원가입
-function signup(name, accountId, password) {
+function signup(name, email, password) {
     return fetch("/api/member/signup", {
         method: "POST",
         headers: {
@@ -37,20 +37,20 @@ function signup(name, accountId, password) {
         },
         body: JSON.stringify({
             name: name,
-            accountId: accountId,
+            email: email,
             password: password
         })
     })
         .then(response => {
-            if (!response.ok)   throw new Error("회원 가입 실패");
-            return response.json();
-        })
-        .then(data => {
-            console.log("회원가입 성공:", data);
-            // 로직
+            const data = response.json();
 
-            // 페이지 이동
-            window.location.href="/login";
+            if (!response.ok) {
+                throw new Error(data.message || "회원 가입 성공");
+            }
+
+            //성공 시 처리
+            console.log("회원 가입 성공", data);
+            window.location.href = '/login';
         })
         .catch(error => {
             alert(error.message);

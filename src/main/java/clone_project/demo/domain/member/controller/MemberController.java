@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 /**
  * 회원 정보, 백엔드 처리가 필요하는 컨트롤러
  */
-@Controller
 @Slf4j
 @RequiredArgsConstructor
 public class MemberController {
@@ -28,7 +27,7 @@ public class MemberController {
         Member member = memberService.login(request);
         if (member != null) {
             // 로그인 성공, 쿠키 등록
-            Cookie cookie = new Cookie("accountId", member.getAccountId());
+            Cookie cookie = new Cookie("accountId", member.getEmail());
             cookie.setDomain("localhost");
             cookie.setPath("/");
             cookie.setMaxAge(60 * 60 * 24 * 7); // 1주일 간 저장

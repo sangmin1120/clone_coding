@@ -15,7 +15,7 @@ public class MemberDto {
     @NoArgsConstructor
     public static class Signup {
         private String name;
-        private String accountId;
+        private String email;
         private String password;
         private MemberRole role;
     }

@@ -3,12 +3,14 @@ package clone_project.demo.web.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * 웹 페이지 반환하는 컨트롤러
  */
 @Controller
 @Slf4j
+@RequestMapping("/web")
 public class webController {
 
     //로그인 페이지 반환
