@@ -1,9 +1,7 @@
 package clone_project.demo.domain.member.controller;
 
-import clone_project.demo.domain.member.dto.MemberDto;
 import clone_project.demo.domain.member.entity.Member;
-import clone_project.demo.domain.member.mapper.MemberMapper;
-import clone_project.demo.domain.member.service.memberService;
+import clone_project.demo.domain.member.service.MemberService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -19,9 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @Slf4j
 @RequiredArgsConstructor
-public class memberController {
+public class MemberController {
 
-    private final memberService memberService;
+    private final MemberService memberService;
 
     @PostMapping("/login")
     public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
