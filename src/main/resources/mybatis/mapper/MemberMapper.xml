@@ -7,8 +7,8 @@
     <!--  Member insert쿼리-->
     <insert id="save" parameterType="clone_project.demo.domain.member.dto.MemberDto">
 
-        INSERT INTO member (name, accountId, password)
-        VALUES (#{name}, #{accountId}, #{password})
+        INSERT INTO member (name, accountId, password, role)
+        VALUES (#{name}, #{accountId}, #{password}, "ROLE_MEMBER")
     </insert>
 
     <!--  Member find 쿼리-->
