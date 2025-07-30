@@ -9,6 +9,6 @@ import java.util.List;
 
 @Mapper
 public interface MemberMapper {
-    void save(MemberDto member);
+    void save(MemberDto.Signup member);
     Member findByAccountId(String accountId);
 }

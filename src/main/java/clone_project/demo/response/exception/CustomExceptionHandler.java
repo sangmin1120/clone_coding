@@ -1,5 +1,6 @@
-package clone_project.demo.error;
+package clone_project.demo.response.exception;
 
+import clone_project.demo.response.error.ErrorResponseEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

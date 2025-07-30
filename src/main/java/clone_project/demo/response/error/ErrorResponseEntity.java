@@ -1,4 +1,4 @@
-package clone_project.demo.error;
+package clone_project.demo.response.error;
 
 import lombok.Builder;
 import lombok.Data;
@@ -15,9 +15,9 @@ public class ErrorResponseEntity {
 
     public static ResponseEntity<ErrorResponseEntity> toResponseEntity(ErrorCode e) {
         return ResponseEntity
-                .status(e.getHttpStatus())
+                .status(e.getHttpStatus()) // httpStatus 자체가 들어감
                 .body(ErrorResponseEntity.builder()
-                        .status(e.getHttpStatus().value())
+                        .status(e.getHttpStatus().value()) // 200
                         .name(e.name())
                         .message(e.getMessage())
                         .build());

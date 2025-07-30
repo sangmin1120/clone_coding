@@ -8,7 +8,7 @@
     <title>로그인 페이지</title>
 </head>
 <body>
-    <form action="login" method="post">
+    <form id="loginForm">
         <label for="accountId">아이디</label>
         <input type="text" id="accountId" name="accountId" placeholder="아이디를 입력하세요">
 
@@ -21,7 +21,18 @@
 </body>
 </html>
 
+<script src="/js/auth/auth.js"></script>
 <script>
+    // 로그인 api 동작
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+        e.preventDefault(); // 기본 form 제출 막기
+
+        const accountId = document.getElementById("accountId").value;
+        const password = document.getElementById("password").value;
+
+        login(accountId, password);
+    });
+    // 회원가입 페이지 이동
     document.getElementById("signupBtn").addEventListener("click", function () {
         window.location.href = "signup";
     })
