@@ -8,7 +8,7 @@
     <insert id="save" parameterType="clone_project.demo.domain.member.dto.MemberDto">
 
         INSERT INTO member (name, email, password, role)
-        VALUES (#{name}, #{email}, #{password}, "ROLE_MEMBER")
+        VALUES (#{name}, #{email}, #{password}, #{role})
     </insert>
 
     <!--  Member find 쿼리-->

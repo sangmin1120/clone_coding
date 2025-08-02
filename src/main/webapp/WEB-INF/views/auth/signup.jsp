@@ -8,7 +8,7 @@
     <title>회원가입 페이지</title>
 </head>
 <body>
-    <form id="signupBtn">
+    <form id="signupForm">
         <label for="name">이름</label>
         <input type="text" id="name" name="name" placeholder="이름을 입력하세요">
 
@@ -23,8 +23,9 @@
 </body>
 </html>
 
-<script src="/js/auth/auth.js">
-    document.getElementById("signupBtn").addEventListener("submit", function(e) {
+<script src="/js/auth/auth.js"></script>
+<script>
+    document.getElementById("signupForm").addEventListener("submit", function(e) {
         e.preventDefault();
 
         const name = document.getElementById("name").value;

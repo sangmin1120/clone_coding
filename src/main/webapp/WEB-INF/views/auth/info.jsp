@@ -11,17 +11,17 @@
     <title>Document</title>
 </head>
 <body>
-    index.jsp 파일 - My Info
-    <table class="table table-hover table table-striped">
-        <tr>
-            <th>이름</th>
-            <th>아이디</th>
-        </tr>
-        <tr>
-            <th id="memberName">${member.getName()}</th>
-            <th id="memberEmail">${member.getEmail()}</th>
-        </tr>
-    </table>
+index.jsp 파일 - My Info
+<table class="table table-hover table table-striped">
+    <tr>
+        <th>이름</th>
+        <th>아이디</th>
+    </tr>
+    <tr>
+        <th id="memberName">${member.getName()}</th>
+        <th id="memberEmail">${member.getEmail()}</th>
+    </tr>
+</table>
 </body>
 </html>
 <script src="/js/auth/info.js"></script>

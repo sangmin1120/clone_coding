@@ -24,13 +24,21 @@
 <script src="/js/auth/auth.js"></script>
 <script>
     // 로그인 api 동작
-    document.getElementById("loginForm").addEventListener("submit", function (e) {
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
         e.preventDefault(); // 기본 form 제출 막기
 
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
 
-        login(email, password);
+        const result = await login(email, password); // (code, data(JwtToken), message), data(json 파싱)
+        if (result) {
+            const { grantType, refreshToken, accessToken } = result.data.data;
+
+            localStorage.setItem("accessToken", grantType + ' ' + accessToken);
+            localStorage.setItem("refreshToken", refreshToken);
+
+            window.location.href="/web/info";
+        }
     });
     // 회원가입 페이지 이동
     document.getElementById("signupBtn").addEventListener("click", function () {

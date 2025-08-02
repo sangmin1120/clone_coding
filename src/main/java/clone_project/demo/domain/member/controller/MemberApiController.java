@@ -2,12 +2,12 @@ package clone_project.demo.domain.member.controller;
 
 import clone_project.demo.domain.member.dto.MemberDto;
 import clone_project.demo.domain.member.service.MemberService;
+import clone_project.demo.infra.jwt.dto.JwtToken;
+import clone_project.demo.infra.jwt.util.JwtUtil;
 import clone_project.demo.response.ApiResponse;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,9 +24,14 @@ public class MemberApiController {
     }
 
     @PostMapping("/login")
-    public ApiResponse<Void> login(@RequestBody MemberDto.Login loginDto) {
-        memberService.login(loginDto);
+    public ApiResponse<JwtToken> login(@RequestBody MemberDto.Login loginDto) {
 
-        return ApiResponse.ok();
+        return ApiResponse.ok(memberService.login(loginDto));
+    }
+
+    @GetMapping("/info")
+    public ApiResponse<MemberDto.InfoResponse> info(HttpServletRequest request) {
+
+        return ApiResponse.ok(memberService.info(JwtUtil.getAccessToken(request)));
     }
 }
