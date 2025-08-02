@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * 웹 페이지 반환하는 컨트롤러
+ * 웹 페이지 반환하는 컨트롤러 -> 페이지 필터 적용 안함
  */
 @Controller
 @Slf4j
@@ -23,5 +23,11 @@ public class webController {
     @GetMapping("/signup")
     public String signup() {
         return "auth/signup";
+    }
+
+    //정보 반환 페이지
+    @GetMapping("/info")
+    public String index() {
+        return "auth/info";
     }
 }

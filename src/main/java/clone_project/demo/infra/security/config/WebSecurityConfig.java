@@ -46,8 +46,8 @@ public class WebSecurityConfig {
 
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                        .requestMatchers("/auth/**", "/web/**")
-                        .permitAll()
+                        .requestMatchers("/api/member/**", "/web/**").permitAll()
+                        .requestMatchers("/error", "/css/**", "/js/**", "/images/**", "/WEB-INF/**","/favicon.ico").permitAll()
                         .anyRequest().authenticated()
                 )
                 // JwtFilter 를 addFilterBefore 로 등록했던 JwtSecurityConfig 클래스를 적용

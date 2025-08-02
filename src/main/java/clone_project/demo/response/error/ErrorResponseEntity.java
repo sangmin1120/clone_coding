@@ -19,6 +19,7 @@ public class ErrorResponseEntity {
                 .body(ErrorResponseEntity.builder()
                         .status(e.getHttpStatus().value()) // 200
                         .name(e.name())
+                        .code(e.getCode())
                         .message(e.getMessage())
                         .build());
     }
