@@ -10,31 +10,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<body>
-    index.jsp 파일 - My Info
-    <table class="table table-hover table table-striped">
+<body class="bg-light">
+<div class="container py-5">
+    <h1 class="mb-4">Index.jsp 기능 정리</h1>
+    <table class="table table-hover table-striped shadow-sm rounded-3 overflow-hidden mt-4 fs-5">
+        <thead class="table-dark">
         <tr>
-            <th>이름</th>
-            <th>아이디</th>
+            <th>제목</th>
+            <th>내용</th>
         </tr>
+        </thead>
+        <tbody>
         <tr>
-            <th id="memberName">${member.getName()}</th>
-            <th id="memberEmail">${member.getEmail()}</th>
+            <td>JWT, OAuth 2.0을 이용한 회원 가입</td>
+            <td>Token 적용과 Spring Security, Filter 대한 이해가 필요하다.</td>
         </tr>
+        </tbody>
     </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-<script src="/js/auth/info.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", async () => {
-        const result = await info(); // (code, data, message) json 파싱 데이터
-        const member = result.data.data;
 
-        console.log(member);
-
-        if (member) {
-            document.querySelector("#memberName").textContent = member.name;
-            document.querySelector("#memberEmail").textContent = member.email;
-        }
-    })
 </script>

@@ -1,7 +1,7 @@
 // 정보 반환 api
 async function info() {
     try {
-        const { accessToken } = localStorage.getItem("accessToken");
+        const accessToken = localStorage.getItem("accessToken");
 
         const response = await fetch("/api/member/info", {
 
@@ -13,7 +13,7 @@ async function info() {
             withCredential: true
         });
 
-        const data = response.json();
+        const data = await response.json();
 
         if (!response.ok) {
             throw new Error(data.message || "정보 반환 실패");

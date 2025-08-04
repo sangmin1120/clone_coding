@@ -43,10 +43,12 @@ dependencies {
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
 
 	//PasswordEncoder
-	implementation 'org.springframework.security:spring-security-crypto:5.7.1'
+	implementation 'org.springframework.security:spring-security-crypto:6.4.4'
 
 	// Spring Security
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	//oauth
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 
 	// JWT
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
