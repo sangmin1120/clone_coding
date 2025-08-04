@@ -26,6 +26,17 @@ spring:
   redis:
     host: localhost
     port: 6379
+  #Oauth2
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${OAUTH_CLIENT_ID}
+            client-secret: ${OAUTH_CLIENT_SECRET}
+            redirect-uri: ${OAUTH_CLIENT_URI}
+            authorization-grant-type: authorization_code
+            scope: email
 #MyBatis
 mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml

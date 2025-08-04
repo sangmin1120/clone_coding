@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -47,12 +48,22 @@ public class WebSecurityConfig {
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                         .requestMatchers("/api/member/**", "/web/**").permitAll()
-                        .requestMatchers("/error", "/css/**", "/js/**", "/images/**", "/WEB-INF/**","/favicon.ico").permitAll()
+//                        .requestMatchers("/css/**", "/js/**", "/images/**", "/WEB-INF/**").permitAll()
                         .anyRequest().authenticated()
+                                .and()
+                                .oauth2Login()
+                                .userInfoEndpoint().userService(customOauth2UserService)
                 )
+                .oauth2Login()
+                .userInfoEndpoint().userService(customOauth2UserService)
                 // JwtFilter 를 addFilterBefore 로 등록했던 JwtSecurityConfig 클래스를 적용
                 .with(new JwtSecurityConfig(jwtTokenProvider), customizer -> customizer.getClass());
         return http.build();
     }
 
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return web -> web.ignoring()
+                .requestMatchers("/error","/favicon.ico", "/css/**", "/js/**", "/images/**", "/WEB-INF/**");
+    }
 }

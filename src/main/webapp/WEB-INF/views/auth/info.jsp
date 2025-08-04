@@ -11,7 +11,7 @@
     <title>Document</title>
 </head>
 <body>
-index.jsp 파일 - My Info
+info.jsp 파일 - My Info
 <table class="table table-hover table table-striped">
     <tr>
         <th>이름</th>
@@ -28,13 +28,11 @@ index.jsp 파일 - My Info
 <script>
     document.addEventListener("DOMContentLoaded", async () => {
         const result = await info(); // (code, data, message) json 파싱 데이터
-        const member = result.data.data;
+        const { data } = result.data; // name, email
 
-        console.log(member);
-
-        if (member) {
-            document.querySelector("#memberName").textContent = member.name;
-            document.querySelector("#memberEmail").textContent = member.email;
+        if (data) {
+            document.querySelector("#memberName").textContent = data.name;
+            document.querySelector("#memberEmail").textContent = data.email;
         }
     })
 </script>
