@@ -6,6 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface MemberMapper {
-    void save(Member member);
+    Member save(Member member);
     Member findByEmail(String email);
 }

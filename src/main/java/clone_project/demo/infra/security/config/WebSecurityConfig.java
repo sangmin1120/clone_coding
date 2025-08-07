@@ -5,6 +5,8 @@ import clone_project.demo.infra.jwt.config.JwtSecurityConfig;
 import clone_project.demo.infra.jwt.filter.JwtAuthenticationFilter;
 import clone_project.demo.infra.jwt.handler.JwtAccessDeniedHandler;
 import clone_project.demo.infra.jwt.handler.JwtAuthenticationEntryPoint;
+import clone_project.demo.infra.oauth.handler.OAuth2SuccessHandler;
+import clone_project.demo.infra.oauth.service.CustomOAuth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,6 +30,9 @@ public class WebSecurityConfig {
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
+    private final CustomOAuth2UserService customOAuth2UserService;
+    private final OAuth2SuccessHandler oAuth2SuccessHandler;
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -48,14 +53,15 @@ public class WebSecurityConfig {
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                         .requestMatchers("/api/member/**", "/web/**").permitAll()
-//                        .requestMatchers("/css/**", "/js/**", "/images/**", "/WEB-INF/**").permitAll()
+                        .requestMatchers("/auth/success").permitAll()
+                        .requestMatchers("/css/**", "/js/**", "/images/**", "/WEB-INF/**").permitAll()
                         .anyRequest().authenticated()
-                                .and()
-                                .oauth2Login()
-                                .userInfoEndpoint().userService(customOauth2UserService)
                 )
-                .oauth2Login()
-                .userInfoEndpoint().userService(customOauth2UserService)
+                // oauth2 설정
+                .oauth2Login(oauth ->
+                        oauth.userInfoEndpoint(c -> c.userService(customOAuth2UserService))
+                                .successHandler(oAuth2SuccessHandler)
+                )
                 // JwtFilter 를 addFilterBefore 로 등록했던 JwtSecurityConfig 클래스를 적용
                 .with(new JwtSecurityConfig(jwtTokenProvider), customizer -> customizer.getClass());
         return http.build();
