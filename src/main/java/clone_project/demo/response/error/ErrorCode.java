@@ -21,7 +21,12 @@ public enum ErrorCode {
     TOKEN_NOT_FOUND(HttpStatus.NOT_FOUND, "TOKEN-001","권한 정보가 없는 토큰입니다."),
     TOKEN_NOT_EXIST(HttpStatus.BAD_REQUEST, "TOKEN-002", "토큰이 존재하지 않습니다."),
     TOKEN_INVALID(HttpStatus.NOT_FOUND, "TOKEN-003", "토큰 정보가 잘못 됐습니다."),
-    TOKEN_EXPIRATION(HttpStatus.BAD_REQUEST, "TOKEN-004","토큰이 만료되었습니다.");
+    TOKEN_EXPIRATION(HttpStatus.BAD_REQUEST, "TOKEN-004","토큰이 만료되었습니다."),
+
+    /**
+     * OAuth2
+     */
+    ILLEGAL_REGISTRATION_ID(HttpStatus.BAD_REQUEST, "OAUTH2-001", "OAUTH2 registrationId 오류");
 
     private final HttpStatus httpStatus;
     private final String code;

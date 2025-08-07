@@ -18,6 +18,9 @@
         <button type="submit">로그인</button>
     </form>
     <button type="button" id="signupBtn">회원가입</button>
+    <a href="/oauth2/authorization/google">
+        <button type="button">Google 계정으로 로그인</button>
+    </a>
 </body>
 </html>
 
